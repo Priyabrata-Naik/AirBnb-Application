@@ -1,9 +1,6 @@
 package com.codingshuttle.airBnbApp.controller;
 
-import com.codingshuttle.airBnbApp.dto.HotelDto;
-import com.codingshuttle.airBnbApp.dto.HotelInfoDto;
-import com.codingshuttle.airBnbApp.dto.HotelPriceDto;
-import com.codingshuttle.airBnbApp.dto.HotelSearchRequest;
+import com.codingshuttle.airBnbApp.dto.*;
 import com.codingshuttle.airBnbApp.service.HotelService;
 import com.codingshuttle.airBnbApp.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +19,7 @@ public class HotelBrowseController {
     private final HotelService hotelService;
 
     @GetMapping(path = "/search")
-    public ResponseEntity<Page<HotelPriceDto>> searchHotels(@RequestBody HotelSearchRequest hotelSearchRequest) {
+    public ResponseEntity<Page<HotelPriceResponseDto>> searchHotels(@RequestBody HotelSearchRequest hotelSearchRequest) {
         var page = inventoryService.searchHotels(hotelSearchRequest);
 
         return ResponseEntity.ok(page);

@@ -11,7 +11,7 @@ public class RoomDto {
 
     private String type;
 
-    private BigDecimal bashPrice;
+    private BigDecimal basePrice;
 
     private String[] photos;
 

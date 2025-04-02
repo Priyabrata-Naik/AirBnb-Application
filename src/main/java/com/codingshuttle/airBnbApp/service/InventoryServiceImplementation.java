@@ -1,7 +1,6 @@
 package com.codingshuttle.airBnbApp.service;
 
 import com.codingshuttle.airBnbApp.dto.*;
-import com.codingshuttle.airBnbApp.entity.Hotel;
 import com.codingshuttle.airBnbApp.entity.Inventory;
 import com.codingshuttle.airBnbApp.entity.Room;
 import com.codingshuttle.airBnbApp.entity.User;
@@ -50,7 +49,7 @@ public class InventoryServiceImplementation implements InventoryService {
                     .bookedCount(0)
                     .reservedCount(0)
                     .totalCount(room.getTotalCount())
-                    .price(room.getBashPrice())
+                    .price(room.getBasePrice())
                     .closed(false)
                     .date(today)
                     .surgeFactor(BigDecimal.ONE)
@@ -67,7 +66,7 @@ public class InventoryServiceImplementation implements InventoryService {
     }
 
     @Override
-    public Page<HotelPriceDto> searchHotels(HotelSearchRequest hotelSearchRequest) {
+    public Page<HotelPriceResponseDto> searchHotels(HotelSearchRequest hotelSearchRequest) {
         log.info("Searching hotels for {} city, from {} to {}",
                 hotelSearchRequest.getCity(),
                 hotelSearchRequest.getStartDate(),
@@ -86,7 +85,11 @@ public class InventoryServiceImplementation implements InventoryService {
                 pageable
         );
 
-        return hotelPage;
+        return hotelPage.map(hotelPriceDto -> {
+            HotelPriceResponseDto hotelPriceResponseDto = modelMapper.map(hotelPriceDto.getHotel(), HotelPriceResponseDto.class);
+            hotelPriceResponseDto.setPrice(hotelPriceDto.getPrice());
+            return hotelPriceResponseDto;
+        });
     }
 
     @Override

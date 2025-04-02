@@ -1,6 +1,5 @@
 package com.codingshuttle.airBnbApp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +26,7 @@ public class Room {
     private String type;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal bashPrice;
+    private BigDecimal basePrice;
 
     @Column(columnDefinition = "TEXT[]")
     private String[] photos;
