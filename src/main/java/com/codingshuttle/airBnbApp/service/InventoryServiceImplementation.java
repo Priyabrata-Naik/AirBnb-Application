@@ -66,7 +66,7 @@ public class InventoryServiceImplementation implements InventoryService {
     }
 
     @Override
-    public Page<HotelPriceResponseDto> searchHotels(HotelSearchRequest hotelSearchRequest) {
+    public Page<HotelPriceResponseDto> searchHotels(HotelSearchRequestDto hotelSearchRequest) {
         log.info("Searching hotels for {} city, from {} to {}",
                 hotelSearchRequest.getCity(),
                 hotelSearchRequest.getStartDate(),

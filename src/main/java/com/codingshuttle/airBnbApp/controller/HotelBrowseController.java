@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(path = "/hotels")
 @RequiredArgsConstructor
@@ -19,7 +17,7 @@ public class HotelBrowseController {
     private final HotelService hotelService;
 
     @GetMapping(path = "/search")
-    public ResponseEntity<Page<HotelPriceResponseDto>> searchHotels(@RequestBody HotelSearchRequest hotelSearchRequest) {
+    public ResponseEntity<Page<HotelPriceResponseDto>> searchHotels(@RequestBody HotelSearchRequestDto hotelSearchRequest) {
         var page = inventoryService.searchHotels(hotelSearchRequest);
 
         return ResponseEntity.ok(page);
